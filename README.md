@@ -19,3 +19,6 @@ Spawn flash messages with React
   * Pass data to message
 3. Settings (properties)
   * Duration
+
+### Future goal
+1. A separate library designed for Javascript itself, portable to any framework.
