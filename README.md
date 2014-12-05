@@ -20,6 +20,7 @@ Spawn flash messages with React
 3. Settings (properties)
   * Duration
   * Unique
+4. Animation
 
 ### Future goal
 1. A separate library designed for Javascript itself, portable to any framework.
