@@ -1,0 +1,17 @@
+{
+  "name": "react-flash",
+  "version": "0.0.1",
+  "homepage": "https://github.com/srph/react-flash",
+  "authors": [
+    "srph <seraphipod@gmail.com>"
+  ],
+  "description": "Spawn flash messages with React",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
