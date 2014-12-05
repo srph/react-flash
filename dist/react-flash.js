@@ -18451,8 +18451,8 @@ var Message = React.createClass({displayName: 'Message',
 
 module.exports = Message;
 },{"./MessageMixin":153,"react":149}],153:[function(require,module,exports){
+var React = require('react');
 var MessageTimeoutMixin = require('./MessageTimeoutMixin');
-
 
 /**
  * @mixin
@@ -18476,7 +18476,7 @@ var MessageMixin = {
 }
 
 module.exports = MessageMixin;
-},{"./MessageTimeoutMixin":154}],154:[function(require,module,exports){
+},{"./MessageTimeoutMixin":154,"react":149}],154:[function(require,module,exports){
 /**
  * @mixin
  * Binds a timeout, causing the message

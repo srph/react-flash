@@ -1,5 +1,5 @@
+var React = require('react');
 var MessageTimeoutMixin = require('./MessageTimeoutMixin');
-
 
 /**
  * @mixin
