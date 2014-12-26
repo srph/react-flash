@@ -21,7 +21,7 @@ var ContainerMixin = {
     // Index of the message
     var index = stack
       .map(function(message) {
-        return message,id
+        return message.id
       })
       .indexOf(id);
 
