@@ -33,6 +33,8 @@ To contain the list of / stack of messages and utility methods (```remove```, ``
 
 Should be a mixin for the current / active route's ```view-component```.
 
+(Sample contains a component from [rackt/react-router](https://github.com/ract/react-router))
+
 ```js
 var FlashContainerMixin = require('..').ContainerMixin;
 var App = React.createClass({
@@ -41,7 +43,7 @@ var App = React.createClass({
     return (
       <div>
         <Drawer />
-        <Drawer />
+        <RouteHandler />
       </div>
     );
   }
@@ -77,7 +79,7 @@ var MyMessage = React.createClass({
 <Drawer filter="notification" template={MyMessage} />
 ```
 
-1. `Mixin` for the `Message` component for reusability (since we'd like our messages to be used in a a way we'd like it to be).
+- `Mixin` for the `Message` component for reusability and flexibility (since we'd like our messages to be used in a a way we'd like it to be).
 
 ### Other goals
 1. Filter flash messages by type / category ```<GroupOfMessages filter="notification" />```
@@ -86,6 +88,3 @@ var MyMessage = React.createClass({
 4. Settings (properties)
   * Duration
   * Unique
-
-### Future goal
-1. es6
