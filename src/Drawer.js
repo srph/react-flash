@@ -24,7 +24,10 @@ var Drawer = React.createClass({
     attributes: React.PropTypes.object,
     // Messages
     stack: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    
+    // Custom template instead of the provided Message
+    // Template should be a `function` since `React.createClass({ .. })`
+    // returns a `function`
+    template: React.PropTypes.function,
     // Remove handler passed from the Container
     // down to the Messages
     removeHandler: React.PropTypes.function.isRequired,
@@ -44,13 +47,10 @@ var Drawer = React.createClass({
     var className = attributes.className || '';
     
     // Message template
-    var template = stack
-      .map(function(message, index) {
-        return <Message
-          data={message}
-          key={index}
-          removeHandler={removeHandler} />
-      });
+    var Message = this.props.template || Message;
+    var template = stack.map(function(message, index) {
+      return <Message data={message} key={index} removeHandler={removeHandler} />
+    });
 
     return (
       <div style={style} className={className}>
