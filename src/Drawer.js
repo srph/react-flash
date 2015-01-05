@@ -1,5 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
+
+var Manager = require('./Manager');
 var Message = require('./Message');
 
 /**
@@ -22,24 +24,20 @@ var Drawer = React.createClass({
     filter: React.PropTypes.string,
     // Styling attributes, attributes: { class: .., style: .. };
     attributes: React.PropTypes.object,
-    // Messages
-    stack: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
     // Custom template instead of the provided Message
     // Template should be a `function` since `React.createClass({ .. })`
     // returns a `function`
-    template: React.PropTypes.function,
-    // Remove handler passed from the Container
-    // down to the Messages
-    removeHandler: React.PropTypes.function.isRequired,
+    template: React.PropTypes.function
   },
   
   getDefaultProps: function() { return { attributes: {} }; },
+  getInitialState: function() { return { stack: [] } },
+  componentDidMount: function() { this.__updateStack() },
   
   render: function() {
     // Props shorthand
-    var filter = this.props.filter;
-    var stack = this.props.stack;
-    var removeHandler = this.props.removeHandler;
+    var stack = this.state.stack;
+    var removeHandler = this._removeHandler;
     
     // Attributes
     var attributes = this.props.attributes;
@@ -48,17 +46,41 @@ var Drawer = React.createClass({
     
     // Message template
     var Message = this.props.template || Message;
-    var template = stack.map(function(message, index) {
-      return <Message data={message} key={index} removeHandler={removeHandler} />
-    });
 
     return (
       <div style={style} className={className}>
-        {template.filter(function(message, index) {
-          return filter ? message.type == filter : true;
+        {stack.map(function(message, index) {
+          return <Message data={message} key={index} removeHandler={removeHandler} />
         })}
       </div>
     );
+  },
+  
+  /**
+   * @see Manager.remove
+   * @param {int} id ID to pass to Manager.remove / Message to remove
+   */
+  _removeHandler: function(id) {
+    Manager.remove(id);
+    this.__updateStack();
+  },
+  
+  /**
+   * @see Manager.flush
+   */
+  _flushHandler: function() { Manager.flush(); }
+  
+  /**
+   * A `private` method
+   * Updates the `state` stack
+   * by fetching from the Manager's
+   * @see Manager.get 
+   */
+  __updateStack: function() {
+    var filter = this.props.filter;
+    var stack = Manager.get(filter);
+    
+    this.setState({ stack: stack });    
   }
 });
 
