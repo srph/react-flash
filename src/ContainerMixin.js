@@ -25,10 +25,13 @@ var ContainerMixin = {
       })
       .indexOf(id);
 
-    if ( index !== -1 ) {
-      stack.splice(index, 1);
-      this.setState({ stack: stack });
-    }
+    // Throw an exception if the id
+    // does not exist
+    if ( index == -1 )
+      throw new Error('The message (id) does not exist in the stack');
+    
+    stack.splice(index, 1);
+    this.setState({ stack: stack });
   },
 
   /**
@@ -41,11 +44,11 @@ var ContainerMixin = {
     var _defaults = {
       id: ++_index,
       duration: 10000,
-      data: { string: 'My Message' }
+      data: { string: '' }
     };
 
-    stack.push( data ?
-      objectAssign(_defaults, data)
+    stack.push( data
+      ? objectAssign(_defaults, data)
       : _defaults
     );
 
