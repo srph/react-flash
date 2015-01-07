@@ -36,7 +36,7 @@ var MessageStore = Reflux.createStore({
     var _defaults = {
       id: ++_counter,
       duration: 10000,
-      data: { string: '' }
+      template: ''
     };
 
     _stack.push( data
