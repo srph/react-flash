@@ -1,5 +1,3 @@
-exports.Manager = require('./Manager');
-
-exports.Drawer = require('./Drawer');
-exports.Message = require('./Message');
-exports.MessageMixin = require('./MessageMixin');
+exports.Drawer = require('./components/Drawer.jsx');
+exports.Message = require('./components/Message.jsx');
+exports.MessageMixin = require('./components/MessageMixin.js');
