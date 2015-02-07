@@ -6,15 +6,6 @@ var MessageActions = require('../MessageActions');
 var MessageStore = require('../MessageStore');
 var Message = require('./components/Message.jsx');
 
-/**
- * Default drawer style
- */
-var DefaultStyle = {
-  'position': 'absolute',
-  'left': 'auto',
-  'right': 'auto',
-  'top': '25px'
-};
 
 /**
  * More like a category of messages,
@@ -30,14 +21,14 @@ var Drawer = React.createClass({
     filter: React.PropTypes.string,
     
     /**
-     * Custom template instead of the provided `Message` component
-     */
-    template: React.PropTypes.element,
-    
-    /**
      * Limit of messages to show
      */
-    limit: React.PropTypes.number
+    limit: React.PropTypes.number,
+    
+    /**
+     * Custom template instead of the provided `Message` component
+     */
+    template: React.PropTypes.element
   },
   
   /**
