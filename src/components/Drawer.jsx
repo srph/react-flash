@@ -14,35 +14,48 @@ var DefaultStyle = {
   'left': 'auto',
   'right': 'auto',
   'top': '25px'
-}; 
+};
 
 /**
  * More like a category of messages,
  * or a container of messages of certain type
  */
 var Drawer = React.createClass({
-  mixins:[Reflux.ListenerMixin],
+  mixins: [Reflux.connect(MessageStore, 'stack')],
 
   propTypes: {
-    // Type of message to be filtered, filter == message.type
+    /**
+     * Type of message to be filtered, filter == message.type
+     */
     filter: React.PropTypes.string,
+    
+    /**
+     * Custom template instead of the provided `Message` component
+     */
+    template: React.PropTypes.element,
+    
+    /**
+     * Limit of messages to show
+     */
+    limit: React.PropTypes.number,
 
-    // Styling attributes, attributes: { class: .., style: .. };
+    /**
+     * Styling attributes, attributes: { class: .., style: .. }
+     */
     attributes: React.PropTypes.object,
-
-    // Custom template instead of the provided Message
-    // Template should be a `function` since `React.createClass({ .. })`
-    // returns a `function`
-    template: React.PropTypes.func
   },
   
   getDefaultProps: function() { return { attributes: {} }; },
+  
+  /**
+   * `stack` - The messages
+   */
   getInitialState: function() { return { stack: [] } },
-  componentDidMount: function() { this.listenTo(MessageStore, this._onStackChange); }
   
   render: function() {
     // Props shorthand
     var stack = this.state.stack;
+    var filter = this.props.filter;
     var removeHandler = this._removeHandler;
     
     // Attributes
@@ -55,9 +68,14 @@ var Drawer = React.createClass({
 
     return (
       <div style={style} className={className}>
-        {stack.map(function(message, index) {
-          return <Message data={message} key={index} removeHandler={removeHandler} />
-        })}
+        {stack
+          .filter(function(message, index) {
+            return filter ? message.type == filter : true;
+          })
+          .map(function(message, index) {
+            return <Message data={message} key={index} removeHandler={removeHandler} />
+          })
+        }
       </div>
     );
   },
@@ -72,21 +90,6 @@ var Drawer = React.createClass({
    * @see Manager.flush
    */
   _flushHandler: function() { MessageActions.flush(); }
-  
-  /**
-   * A `private` method
-   * Updates the `state` stack
-   * by fetching from the Manager's
-   * @see Manager.get 
-   */
-  _onStackChange: function(stack) {
-    var filter = this.props.filter;
-
-    var newStack = stack.filter(function(message, index) {
-      return filter ? message.type == filter : true;
-    });
-    
-    this.setState({ stack: newStack });
   }
 });
 
