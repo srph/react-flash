@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 var React = require('react');
 
 /**
@@ -23,7 +24,7 @@ var MessageTimeoutMixin = {
    * Resets the timer
    */ 
   _reset: function() {
-    if ( this.$timer ) clearInterval(this.$timer);
+    if ( this.$timer ) clearTimeout(this.$timer);
   }
 };
 
@@ -42,13 +43,14 @@ var MessageMixin = {
 
     /**
      * There are instances when our message contains
-     * only a string. So usage may either be:
-     * {this.props.template} | {this.props.template._whateverProperty_}
+     * only a string, and sometimes a data. So usage may either be:
+     * . {this.props.data}.
+     * <img> {this.props.data.username} replied to your commment..
      */
-    template: React.PropTypes.oneOfType([
+    data: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.object
-    ]),
+    ]).isRequired,
 
     /**
      * `Drawer`'s implementation simply calls `MessageAction`'s
