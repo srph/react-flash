@@ -42,7 +42,7 @@ var Drawer = React.createClass({
     /**
      * Styling attributes, attributes: { class: .., style: .. }
      */
-    attributes: React.PropTypes.object,
+    attributes: React.PropTypes.object
   },
   
   getDefaultProps: function() { return { attributes: {} }; },
