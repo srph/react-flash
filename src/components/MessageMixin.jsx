@@ -16,7 +16,7 @@ var MessageTimeoutMixin = {
   _start: function() {
     this.$timer = setTimeout(
       this._removeHandler,
-      this.props.data.duration
+      this.props.attributes.duration
     );
   },
 
@@ -39,7 +39,7 @@ var MessageMixin = {
   mixins: [MessageTimeoutMixin],
 
   propTypes: {
-    data: React.PropTypes.object.isRequired,
+    attributes: React.PropTypes.object.isRequired,
 
     /**
      * There are instances when our message contains
