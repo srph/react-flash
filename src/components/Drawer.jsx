@@ -37,15 +37,8 @@ var Drawer = React.createClass({
     /**
      * Limit of messages to show
      */
-    limit: React.PropTypes.number,
-
-    /**
-     * Styling attributes, attributes: { class: .., style: .. }
-     */
-    attributes: React.PropTypes.object
+    limit: React.PropTypes.number
   },
-  
-  getDefaultProps: function() { return { attributes: {} }; },
   
   /**
    * `stack` - The messages
@@ -58,16 +51,11 @@ var Drawer = React.createClass({
     var filter = this.props.filter;
     var removeHandler = this._removeHandler;
     
-    // Attributes
-    var attributes = this.props.attributes;
-    var style = attributes.style || DefaultStyle;
-    var className = attributes.className || '';
-    
     // Message template
     var Message = this.props.template || Message;
 
     return (
-      <div style={style} className={className}>
+      <div {...this.props}>
         {stack
           .filter(function(message, index) {
             return filter ? message.type == filter : true;
