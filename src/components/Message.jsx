@@ -5,11 +5,11 @@ var MessageMixin = require('./MessageMixin');
 var Message = React.createClass({
   mixins: [MessageMixin],
   render: function() {
-    var message = this.props.message;
+    var message = this.props.data;
 
     return (
       <div key={message.id}>
-        {message.data.string} |
+        {message.text} |
         <span onClick={this.removeHandler}>X</span>
       </div>
     );
