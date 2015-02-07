@@ -90,7 +90,6 @@ var Drawer = React.createClass({
    * @see Manager.flush
    */
   _flushHandler: function() { MessageActions.flush(); }
-  }
 });
 
 module.exports = Drawer;
