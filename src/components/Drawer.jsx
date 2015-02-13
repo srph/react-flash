@@ -63,12 +63,7 @@ var Drawer = React.createClass({
    * @see MessageActions.remove
    * @param {int} id ID to pass to Manager.remove / Message to remove
    */
-  _removeHandler: function(id) { MessageActions.remove(id); },
-  
-  /**
-   * @see Manager.flush
-   */
-  _flushHandler: function() { MessageActions.flush(); }
+  _removeHandler: function(id) { MessageActions.remove(id); }
 });
 
 module.exports = Drawer;
