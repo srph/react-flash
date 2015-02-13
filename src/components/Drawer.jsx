@@ -12,7 +12,13 @@ var Message = require('./components/Message.jsx');
  * or a container of messages of certain type
  */
 var Drawer = React.createClass({
-  mixins: [Reflux.connect(MessageStore, 'stack')],
+  mixins: [Reflux.connectFilter(MessageStore, 'stack', function(stack) {
+    var filter = this.props.filter;
+    
+    return stack.filter(function(message, index) {
+      return filter ? message.type == filter : true;
+    });
+  })],
 
   propTypes: {
     /**
@@ -39,7 +45,6 @@ var Drawer = React.createClass({
   render: function() {
     // Props shorthand
     var stack = this.state.stack;
-    var filter = this.props.filter;
     var removeHandler = this._removeHandler;
     
     // Message template
@@ -47,14 +52,9 @@ var Drawer = React.createClass({
 
     return (
       <div {...this.props}>
-        {stack
-          .filter(function(message, index) {
-            return filter ? message.type == filter : true;
-          })
-          .map(function(message, index) {
-            return <Message data={message} key={index} removeHandler={removeHandler} />
-          })
-        }
+        {stack.map(function(message, index) {
+          return <Message data={message} key={index} removeHandler={removeHandler} />
+        })}
       </div>
     );
   },
