@@ -50,7 +50,12 @@ var MessageStore = Reflux.createStore({
   /**
    * Removes everything in the stack
    */
-  onFlush: function() { this.trigger(_stack = []); }
+  onClear: function(filter) {
+    this.trigger(_stack = !!filter
+      ? _stack.filter(function(message) { return filter == message.type })
+      : []
+    );
+  }
 };
 
 module.exports = MessageStore;
