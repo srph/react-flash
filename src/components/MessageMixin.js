@@ -71,7 +71,7 @@ var MessageMixin = {
    * @see Drawer's removeHandler
    */
   _removeHandler: function() {
-    MessageActions.remove(this.props.data.key);
+    MessageActions.remove(this.props.data.id);
   }
 }
 
