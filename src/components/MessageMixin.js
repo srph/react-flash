@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
+var MessageActions = require('../MessageActions');
 
 /**
  * @mixin
@@ -70,9 +71,7 @@ var MessageMixin = {
    * @see Drawer's removeHandler
    */
   _removeHandler: function() {
-    this.props.remove(
-      this.props.data.key
-    );
+    MessageActions.remove(this.props.data.key);
   }
 }
 
