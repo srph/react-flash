@@ -51,18 +51,7 @@ var MessageMixin = {
     data: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.object
-    ]).isRequired,
-
-    /**
-     * `Drawer`'s implementation simply calls `MessageAction`'s
-     * `remove` fn, but I preferred to pass it down from `Drawer`
-     * instead of directly calling the action because this component
-     * (Message) | mixin is tightly coupled to the `Drawer` component
-     * anyway.
-     * @see Drawer
-     * @see Drawer._removeHandler
-     */
-    removeHandler: React.PropTypes.func.isRequired,
+    ]).isRequired
   },
 
   /**
