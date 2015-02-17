@@ -11,6 +11,25 @@ var _counter = 0;
  */
 var MessageStore = Reflux.createStore({
   listenables: MessageActions,
+
+  /**
+   * Adds a new message to the stack
+   */
+  onAdd: function(data) {
+    // Message defaults
+    var _defaults = {
+      id: ++_counter,
+      duration: 10000,
+      data: ''
+    };
+
+    _stack.push( data
+      ? objectAssign(_defaults, data)
+      : _defaults
+    );
+
+    this.trigger(_stack);
+  },
   
   /**
    * Removes the message with given key
@@ -21,38 +40,22 @@ var MessageStore = Reflux.createStore({
     var index = _stack.map(function(message) { return message.id }).indexOf(id);
 
     // Throw an exception if there are no results of the given id
-    if ( index == -1 )
-      throw new Error('The message (id) does not exist in the stack');
+    if ( index == -1 ) {
+      var err = 'The message (id) does not exist in the stack';
+      throw new Error(err);
+    }
     
     _stack.splice(index, 1);
     this.trigger(_stack);
   },
 
   /**
-   * Adds a new message to the stack
-   */
-  onAdd: function(data) {
-    // Message defaults
-    var _defaults = {
-      id: ++_counter,
-      duration: 10000,
-      template: ''
-    };
-
-    _stack.push( data
-      ? objectAssign(_defaults, data)
-      : _defaults
-    );
-
-    this.trigger(_stack);
-  },
-
-  /**
    * Removes everything in the stack
+   * @param {string} f Message type to be cleared
    */
-  onClear: function(filter) {
-    this.trigger(_stack = !!filter
-      ? _stack.filter(function(m) { return m.type ? filter !== message.type : true })
+  onClear: function(f) {
+    this.trigger(_stack = !!f
+      ? _stack.filter(function(m) { return m.type ? f !== m.type : true })
       : []
     );
   }

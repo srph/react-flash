@@ -6,12 +6,16 @@ var MessageActions = require('../MessageActions');
 var MessageStore = require('../MessageStore');
 var Message = require('./components/Message.jsx');
 
+var pluck = require('../utils/pluck');
 
 /**
  * More like a category of messages,
  * or a container of messages of certain type
  */
 var Drawer = React.createClass({
+  /**
+   * @see Reflux.connectFilter
+   */
   mixins: [Reflux.connectFilter(MessageStore, 'stack', function(stack) {
     var filter = this.props.filter;
     
@@ -29,31 +33,26 @@ var Drawer = React.createClass({
     /**
      * Limit of messages to show
      */
-    limit: React.PropTypes.number,
-    
-    /**
-     * Custom template instead of the provided `Message` component
-     */
-    template: React.PropTypes.element
+    limit: React.PropTypes.number
   },
-  
-  /**
-   * `stack` - The messages
-   */
-  getInitialState: function() { return { stack: [] } },
   
   render: function() {
     // Props shorthand
+    var {filter, limit, ...other} = this.props;
     var stack = this.state.stack;
     var removeHandler = this._removeHandler;
     
     // Message template
-    var Message = this.props.template || Message;
+    var Message = this.props.children || Message;
 
     return (
-      <div {...this.props}>
+      <div {...other}>
         {stack.map(function(message, index) {
-          return <Message data={message} key={index} removeHandler={removeHandler} />
+          return React.addons.cloneWithProps(Message, {
+            attributes: pluck(obj, ['id', 'duration', 'type']),
+            data: message.data,
+            key: message.id
+          });
         })}
       </div>
     );

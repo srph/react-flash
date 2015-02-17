@@ -1,7 +1,4 @@
 var Reflux = require('reflux');
+var actions = ['add', 'remove', 'clear'];
 
-var MessageActions = module.exports = Reflux.createActions([
-  'add',
-  'remove',
-  'clear'
-]);
+module.exports = Reflux.createActions(actions);

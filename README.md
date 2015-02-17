@@ -5,6 +5,22 @@ Spawn flash messages with [Reflux](https://github.com/spoike/refluxjs), a Flux i
 
 This is a *work in progress*.
 
+So far, I aim for this usage:
+
+```jsx
+<Drawer>
+  <Toast filter={'snack'} />
+</Drawer>
+
+<Drawer filter={'snack'}>
+  <Snack />
+</Drawer>
+
+<Drawer filter={'flash.success'}>
+  <Message />
+</Drawer>
+```
+
 ## Table of Contents
 
 ## Important Notice

@@ -9,8 +9,7 @@ var Message = React.createClass({
 
     return (
       <div key={message.id}>
-        {message.text} |
-        <span onClick={this.removeHandler}>X</span>
+        {message.text} | <span onClick={this._removeHandler}>X</span>
       </div>
     );
   }
