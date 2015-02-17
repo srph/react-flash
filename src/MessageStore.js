@@ -3,8 +3,11 @@ var objectAssign = require('object-assign');
 
 var MessageActions = require('./MessageActions');
 
+var isString = require('./utils/isString');
+
 var _stack = []; // Container for the each object of message
 var _counter = 0;
+
 /**
  * Registry of all messages, mixin to manage all drawers.
  * Contains add, flush, and remove to do the mentioned.
@@ -24,7 +27,7 @@ var MessageStore = Reflux.createStore({
     };
 
     _stack.push( data
-      ? objectAssign(_defaults, data)
+      ? objectAssign(_defaults, isString(data) ? { data: data } : data )
       : _defaults
     );
 
@@ -54,8 +57,20 @@ var MessageStore = Reflux.createStore({
    * @param {string} f Message type to be cleared
    */
   onClear: function(f) {
+    this.trigger(_stack = !!f && f !== null
+      ? _stack.filter(function(m) { return m.type ? m.type !== f : true })
+      : []
+    );
+  },
+
+  /**
+   * Similar to `onClear`, but removes only the given filter
+   * if provided.
+   * @param {string} f Message type to be cleared
+   */
+  onClearExcept: function(f) {
     this.trigger(_stack = !!f
-      ? _stack.filter(function(m) { return m.type ? f !== m.type : true })
+      ? _stack.filter(function(m) { return m.type ? f == m.type : true })
       : []
     );
   }

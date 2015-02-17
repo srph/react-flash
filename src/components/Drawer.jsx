@@ -40,7 +40,6 @@ var Drawer = React.createClass({
     // Props shorthand
     var {filter, limit, ...other} = this.props;
     var stack = this.state.stack;
-    var removeHandler = this._removeHandler;
     
     // Message template
     var Message = this.props.children || Message;
@@ -56,13 +55,7 @@ var Drawer = React.createClass({
         })}
       </div>
     );
-  },
-
-  /**
-   * @see MessageActions.remove
-   * @param {int} id ID to pass to Manager.remove / Message to remove
-   */
-  _removeHandler: function(id) { MessageActions.remove(id); }
+  }
 });
 
 module.exports = Drawer;
