@@ -52,7 +52,7 @@ var MessageStore = Reflux.createStore({
    */
   onClear: function(filter) {
     this.trigger(_stack = !!filter
-      ? _stack.filter(function(message) { return filter == message.type })
+      ? _stack.filter(function(m) { return m.type ? filter !== message.type : true })
       : []
     );
   }
