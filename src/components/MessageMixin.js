@@ -7,9 +7,6 @@ var MessageActions = require('../MessageActions');
  * and should be reusable for custom templates
  */
 var MessageMixin = {
-  // Attach self-removing mixin
-  mixins: [MessageTimeoutMixin],
-
   propTypes: {
     /**
      * Message attributes (id, type, duration). Propeties
