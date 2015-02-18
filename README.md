@@ -1,4 +1,4 @@
-# reflux-flash [![npm version](http://img.shields.io/npm/v/reflux-flash.svg?style=flat)](https://npmjs.org/package/reflux-flash) [![Build Status](https://travis-ci.org/srph/reflux-flash.svg?branch=master)](https://travis-ci.org/srph/reflux-flash?branch=master) [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+# reflux-flash [![npm version](http://img.shields.io/npm/v/reflux-flash.svg?style=flat)](https://npmjs.org/package/reflux-flash) [![Dependencies Status](https://david-dm.org/srph/reflux-flash.svg)](https://david-dm.org/srph/reflux-flash.svg) [![Build Status](https://travis-ci.org/srph/reflux-flash.svg?branch=master)](https://travis-ci.org/srph/reflux-flash?branch=master) [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 Spawn flash messages with [Reflux (```spoike/reflux```)](https://github.com/spoike/refluxjs).
 
