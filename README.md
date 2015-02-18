@@ -1,5 +1,4 @@
-reflux-flash
-===========
+# reflux-flash [![Build Status](https://travis-ci.org/srph/reflux-flash.svg?branch=master)](https://travis-ci.org/srph/reflux-flash?branch=master)
 
 Spawn flash messages with [Reflux (```spoike/reflux```)](https://github.com/spoike/refluxjs).
 
