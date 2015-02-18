@@ -1,11 +1,13 @@
 /**
  * @mixin
  * Binds a timeout, causing the message
- * to be removed (call removeHandler)
+ * to be removed after a given duration
+ *
+ * @see MessageMixin
  */
 var MessageTimeoutMixin = {
   /**
-   * `Conditionally` starts the timer
+   * Automatically (and `Conditionally`) starts the timer
    * @see this._start
    */
   componentDidMount: function() {
@@ -19,7 +21,7 @@ var MessageTimeoutMixin = {
   },
 
   /**
-   * Clears the timer
+   * Removes timeout binding during the phase
    * @see this._stop
    */
   componentWillUnmount: function() { this._stop(); },
@@ -34,7 +36,8 @@ var MessageTimeoutMixin = {
   },
 
   /**
-   * Clears the timer
+   * Clears the timer only if the binding exists
+   * (to avoid errors).
    */ 
   _stop: function() {
     if ( this.$timer ) clearTimeout(this.$timer);

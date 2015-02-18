@@ -3,8 +3,7 @@ var MessageActions = require('../MessageActions');
 
 /**
  * @mixin
- * A boilerplate for messages.
- * Used the by the message component,
+ * A boilerplate for messages. Used the by the message component,
  * and should be reusable for custom templates
  */
 var MessageMixin = {
