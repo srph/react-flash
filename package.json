@@ -1,7 +1,7 @@
 {
   "name": "react-flash",
-  "version": "0.0.1",
-  "description": "Spawn flash messages with React",
+  "version": "0.1.0",
+  "description": "Spawn flash messages with Reflux and React",
   "main": "./src/index.js",
   "scripts": {
     "test": "jest"

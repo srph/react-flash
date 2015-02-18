@@ -53,7 +53,9 @@ var MessageStore = Reflux.createStore({
   },
 
   /**
-   * Removes everything in the stack
+   * Removes everything in the stack. If a filter is provided,
+   * removes only messages with that type.
+   *
    * @param {string} f Message type to be cleared
    */
   onClear: function(f) {
@@ -64,13 +66,18 @@ var MessageStore = Reflux.createStore({
   },
 
   /**
-   * Similar to `onClear`, but removes only the given filter
-   * if provided.
+   * Similar to `onClear`, but, if a filter is provided,
+   * removes all messages in the stack except messages with that type
+   * e.g., passing 'toast' ```(clearExcept('toast')) would
+   * clear everything else and leave messages with `toast` alone.
+   *
+   * I doubt this would get used, but ~wallah~, here it is.
+   *
    * @param {string} f Message type to be cleared
    */
   onClearExcept: function(f) {
     this.trigger(_stack = !!f
-      ? _stack.filter(function(m) { return m.type ? f == m.type : true })
+      ? _stack.filter(function(m) { return m.type ? m.type !== f : false })
       : []
     );
   }

@@ -1,33 +1,5 @@
-/** @jsx React.DOM */
 var React = require('react');
 var MessageActions = require('../MessageActions');
-
-/**
- * @mixin
- * Binds a timeout, causing the message
- * to be removed (call removeHandler)
- */
-var MessageTimeoutMixin = {
-  componentDidMount: function() { this._start(); },
-
-  /**
-   * Starts the timer
-   * @see this._removeHandler
-   */
-  _start: function() {
-    this.$timer = setTimeout(
-      this._removeHandler,
-      this.props.attributes.duration
-    );
-  },
-
-  /**
-   * Resets the timer
-   */ 
-  _reset: function() {
-    if ( this.$timer ) clearTimeout(this.$timer);
-  }
-};
 
 /**
  * @mixin
@@ -40,6 +12,10 @@ var MessageMixin = {
   mixins: [MessageTimeoutMixin],
 
   propTypes: {
+    /**
+     * Message attributes (id, type, duration). Propeties
+     * important other than data.
+     */
     attributes: React.PropTypes.object.isRequired,
 
     /**
@@ -62,6 +38,6 @@ var MessageMixin = {
   _removeHandler: function() {
     MessageActions.remove(this.props.attributes.id);
   }
-}
+};
 
 module.exports = MessageMixin;
