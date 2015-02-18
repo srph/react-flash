@@ -44,7 +44,7 @@
     ]
   },
   "jest": {
-    "scriptPreprocessor": "./config/preprocessor.js",
+    "scriptPreprocessor": "./jest/preprocessor.js",
     "unmockedModulePathPatterns": [
       "./node_modules/react"
     ]
