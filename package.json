@@ -23,6 +23,7 @@
   "devDependencies": {
     "browserify": "^7.0.0",
     "jest": "^0.1.37",
+    "react-tools": "^0.12.2",
     "reactify": "^0.17.1"
   },
   "browserify": {
