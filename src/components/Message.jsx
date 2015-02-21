@@ -1,18 +1,25 @@
 /** @jsx React.DOM */
+"use strict";
 var React = require('react');
-var MessageMixin = require('./MessageMixin');
 
+var MessageMixin = requrie('../MessageMixin');
+
+/**
+ * Bootstrap Alert
+ */
 var Message = React.createClass({
   mixins: [MessageMixin],
+
   render: function() {
-    var message = this.props.data;
+    var {data, ...other} = this.props;
 
     return (
-      <div key={message.id}>
-        {message.text} | <span onClick={this._removeHandler}>X</span>
+      <div className="alert" role="alert">
+        <button type="button" className="close" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <p>{data}</p>
       </div>
     );
   }
 });
-
-module.exports = Message;

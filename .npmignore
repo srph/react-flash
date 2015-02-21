@@ -1,0 +1,7 @@
+node_modules/
+jest/
+
+.gitignore
+.travis.yml
+README.old.md
+README.md
