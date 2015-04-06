@@ -2,8 +2,6 @@
 
 Spawn flash messages with [Reflux (```spoike/reflux```)](https://github.com/spoike/refluxjs).
 
-This is a *work in progress*.
-
 So far, I aim for this usage:
 
 ```jsx
@@ -20,6 +18,10 @@ So far, I aim for this usage:
 </Drawer>
 ```
 
+## Important Notice
+
+**This project has been discontinued without working API or examples**. I am currently extremely busy at work, and, at the same time, moving to [alt](https://github.com/goatslacker/alt).
+
 ## Content
 
 - [Important Notice](#important-notice)
@@ -31,33 +33,6 @@ So far, I aim for this usage:
   - [Building](#building)
   - [Coding Style](#coding-style)
 
-## Important Notice
-
-[Back to top](#content)
-
-## Getting Started
-
-[Back to top](#content)
-
-### Installation
-
-[Back to top](#content)
-
-### Usage
-
-[Back to top](#content)
-
-## Contribution
-
-[Back to top](#content)
-
-### Building
-
-[Back to top](#content)
-
-### Coding Style
-
-[Back to top](#content)
 
 ## Acknowledgement
 
